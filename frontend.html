@@ -1,0 +1,58 @@
+
+프론트엔드(클라이언트)
+
+Javascript, Typescript, Vue3, Node.js
+
+
+Node.js
+    javascript 런타임 환경, 웹 브라우저 없이도 Javascript 작동 가능하도록 만든 프로그램,
+    Node.js 가 있으면, Javascirpt로도 서버 개발 가능
+
+npm
+    Node Package Manager
+    Node.js로 만든 모듈들을 웹에서 다운받아 설치하고 관리하는 프로그램
+    모든 dependency resolve, fetch 된 뒤에야 디스크에 write 되는 구조
+    package.json 파일에서 개발용, 서비스용으로 의존성 구분 가능
+        https://c17an.netlify.app/blog/node.js/npm-install-%EC%A0%95%EB%A6%AC/article/ 
+
+
+의존성
+    dependency
+    해당 모듈에서 참고하고 있는 모듈
+    말 그대로 의존하고 있는 모듈이니까
+    의존성 패키지를 설치하지 않으면 작동하지 않겠지.
+
+
+
+yarn
+    여러 모듈을 한 번에 다운받는 프로세스로 진행함.
+
+pnpm
+    Performent Node Package Manager
+    npm보다 속도가 빨라진 프로그램
+    pnpm-store 원본 저장소에 저장한 후, 프로젝트마다 심볼릭 링크로 관리한다
+
+
+저번주 발생한 에러
+    잘 개발하던 기존 소스 dev 실행했을 때 안 됨
+        dev 에러
+            에러 코드
+                블라블라
+            구글링해서 해결함
+            실행은 되지만 스타일 에러 뜸
+                이럴 땐 클린하고 재설치하는 방법밖에 없음
+        setup 에러
+            에러 코드
+                블라블라
+            방화벽 해제 요청 
+                해결 안됨
+            프록시 설정
+            pnpm-store에 옮겨보기
+        
+
+
+        
+
+
+
+

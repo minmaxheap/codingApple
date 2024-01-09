@@ -1,0 +1,182 @@
+요구사항 기능
+
+    일자 필터링
+    텍스트 필터링
+
+    데이터 조회
+    summary
+    상세 데이터
+
+    데이터 조회 시 조건 적용
+
+    엑셀다운로드
+
+    그리드뷰
+
+
+MVC 구조 이해
+   프레임워크에서 mvc 구조 어떻게 구현되어 있는지 (새로운 메뉴(기능) 개발 시 사용)
+   모델
+   뷰
+   컨트롤러
+   api 호출하는 방법 (파라미터 없이)
+   api 결과 데이터 그리드뷰에 보여주기   
+   파라미터 데이터 담는법
+   api 호출하는 방법(파라미터 추가)
+
+
+정의, 설정(구성)으로 나누어서 설명해야 함
+-----------------------------------------
+
+
+개발 환경 세팅
+   초기환경 세팅
+      노션에 정리되어 있는 대로 따라하기 (이걸로 부족하면 설명 추가 필요)
+      https://www.notion.so/vmssolutions/ad0d25423a1246b782ab64c7960d2672
+
+   개발 환경 구축
+        1. DB
+            A. 로컬 DB 사용
+                appsettings.json 편집
+            B. 개발 DB 사용(배포 환경 설정 참고)
+
+        2. 백엔드
+            A. MVC 구조 사용
+                DTO 추가
+                DAO 추가
+                Controller 추가
+                sqlFile.xml 추가 & 출력 디렉토리에 항상 복사 (ibatis 프레임워크)
+                Startup.cs 편집
+                SqlMap.config 편집
+        
+        3. 프론트엔드
+            A. 로컬에서 실행
+                .env.development 로컬 ip로 수정
+                vue 파일 추가
+                index.ts 파일 경로 설정        
+                       
+   UI 프레임워크 설명
+        VUE3를 프레임워크에서 어떻게 사용하고 있는지 (const dataSource = ref<any[] | null>([]); 이런 코드 이해)
+            <template>
+                <div>
+                    레이아웃 지정
+                Component(Wijmo 라이브러리 등)
+                    Component 의미(alias), 어디에 구현되어 있는지, 속성 지정, 이벤트 지정, 데이터 바인딩                
+            <script>
+                import (모듈 불러오기)
+                    개발 애플레이션 크기가 커지면 여러 모듈로 분리함
+                이벤트
+                선언(변수, 상수)
+                    ref 사용
+                        변수.value에 값 넣어주기
+                    reactive 사용
+                        .value 붙일 필요 없음
+        Javascript & TypeScript 문법
+            https://www.notion.so/vmssolutions/Javascript-TypeScript-ba9be45335de4ce59dba7f3af3244e1b
+
+직접 해보는 과제 (예제 필요=> 예제 파일 자체로는 실행 안 되지만, 필요한 부분 추가하면 개발 환경에서 결과 확인할 수 있도록 템플릿 필요)     
+    1. API 호출해서 DB에서 SELECT한 데이터 그대로 보여주기 (파라미터 없음 => DB WHERE 조건 없음)
+        A. DB
+            SELECT * FROM 구문
+            WHERE 조건 없음                
+        B. 백엔드
+            기본 셋팅           
+        C. 프론트 엔드
+            SELECT 결과 데이터를 받아서 변수에 담아두기
+            변수에 있는 데이터를 그리드뷰 형태로 보여주기
+                <template> 코드 작성
+                    <div> 코드 작성
+                    이미 구현되어 있는 Component import 해서 사용하기
+                        WjFlexGrid 사용 (Wijmo library)
+                            initialized 설정 (이벤트)
+                            itemSource 설정 (데이터)
+                            column 설정(데이터)
+                            
+                        extendGrid 사용 (Aleatorik library)
+                            dataOptions 설정 (속성)
+                            gridOptions 설정 (속성)
+                <script> 코드 작성
+                    useQuery 사용
+                        loadData 구현 
+                            useQuery 호출 후 itemSource value 변경
+                    onMounted 이벤트 구현
+                        loadData 호출
+                    onInitialized 이벤트 구현
+                        loadData 호출
+            그리드뷰 디자인 변경하기
+                <template> 코드 작성
+                    병합, 스크롤, 정렬 설정 (속성)
+                <style> 코드 작성
+                    색상
+
+    2. 필터링 조건 설정하면 API 호출 후 필터링된 결과 보여주기 (DB WHERE 조건 있음)
+        A. DB
+            SELECT * FROM 테이블 WHERE 구문
+        B. 백엔드
+            API 생성
+                sqlFile.xml 편집
+                    dynamic 태그 사용
+                    <!CDATA[...]]> 태그 사용
+                    isNotEmpty 태그 사용
+                파라미터 전달 받을 매개변수 추가
+                GET 방식 vs POST 방식
+        C. 프론트 엔드
+            전달할 파라미터 담기
+                <template> 코드 작성
+                    조건 보일 Component 추가
+                <script> 코드 작성                        
+                    초기값 설정
+            API 호출할 때 파라미터 같이 보내기
+                GET 방식 vs POST 방식
+
+    3. API 호출 데이터 가공하는 방법
+        A. lodash 라이브러리 사용
+            groupby
+            sumby
+
+    4. Component 사용법 배우기 (차트 등)
+
+    5. Excel 다운로드 기능 구현   
+    6. CRUD 구현
+    7. <template> 코드 동적 생성 (피봇 그리드 구현)
+    8. 간트 차트 구현
+
+배포 환경 설정
+    필요한 프로그램 설치
+        NGINX 설치
+        NSSM 설치
+        .NET 6 설치    
+
+    NSSM.exe 폴더로 cmd 실행
+        Web Server(vue3-template + nginx) 배포
+            NGINX conf 파일 수정
+            https://vmssolutions.notion.site/Deploy-2f5d8710d8514291a8972fcdea6e049e
+
+            NGINX/html 폴더에 dist 폴더 내용물 붙여넣기
+
+            cmd NSSM INSTALL '프론트엔드 서비스명' 
+                cmd NSSM INSTALL vmsFrontEndService
+
+                NSSM 팝업창 뜨면
+                    Path에 nginx.exe 경로 지정
+
+                프론트엔드 서비스 시작
+                    nssm start vmsFrontEndService
+
+        WAS(ASP.Net Template 배포)
+            bin/release/.net6.0 폴더 내용물 오늘 날짜 폴더로 생성하기 (언제든지 롤백할 수 있도록) 
+            기존 폴더는 삭제하지 않고 두기
+
+            cmd NSSM INSTALL '백엔드 서비스명' vmsBackEndService
+                cmd NSSM INSTALL vmsBackEndService
+
+            NSSM 팝업창 뜨면
+                Path에 services.exe 경로 지정
+                
+            백엔드 서비스 시작
+                nssm start vmsBackEndService
+
+
+   
+   
+

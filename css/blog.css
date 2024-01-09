@@ -1,0 +1,79 @@
+.container
+{
+    width:1000px;
+    height:200px;
+    /* background-color: aquamarine; */
+}
+.content
+{
+    width: 80%;
+    height: 100%;
+    /* background-color: blueviolet; */
+    float:left;
+}
+.top-content
+{
+    width: 100%;
+    height: 25%;
+    /* background-color: red; */
+}
+.middle-content
+{
+    width: 100%;
+    height: 20px;
+    clear:both;
+    /* 가상의 박스를 만들어서 clear : both
+    float 를 썼으면 꼭 가상의 박스를 추가하는 방식 */
+    /* background-color: yellow; */
+}
+.bottom-content
+{
+    width: 100%;
+    height: 20px;
+    /* background-color: rgb(70, 70, 4); */
+}
+.profile
+{
+    width: 50px;
+    height:100%;
+    clip-path: circle();
+    float:left;
+}
+.thumbnail
+{
+    width: 20%;
+    height: 100%;
+    float:right;
+    /* background-color: indianred; */
+}
+.userName
+{
+   display: inline-block;
+   /* background-color: aquamarine; */
+}
+.writeDate
+{
+    float:left;
+    /* background-color: cadetblue; */
+}
+.information
+{
+    height:100%;
+    float:left;
+    /* background-color: violet; */
+}
+.navbar li
+{
+    /* selector 문법 중 공백: ~안에 있는 모든 자식
+    > ~안에 있는 직계 자식
+    */
+    display: inline-block;
+    width:60px;
+    text-align:center;
+    background-color: #eee;
+}
+.navbar a
+{
+    font-size: 16px;
+    text-decoration: none;
+}

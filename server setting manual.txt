@@ -1,0 +1,60 @@
+
+---배포 전 설치 프로그램---
+
+NGINX 설치
+    http://nginx.org/en/download.html
+
+    참고 : https://taewooblog.tistory.com/entry/%EC%9C%88%EB%8F%84%EC%9A%B0-10%EC%97%90-nginx-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
+
+NSSM 설치
+    https://nssm.cc/download
+
+    참고 : https://podo1017.tistory.com/265
+
+닷넷 6 설치
+    https://dotnet.microsoft.com/download/dotnet/6.0
+    
+    참고 : https://devscb.tistory.com/62
+
+
+---배포 순서---
+
+프론트엔드 서비스
+    NGINX conf 파일 수정
+    https://vmssolutions.notion.site/Deploy-2f5d8710d8514291a8972fcdea6e049e
+
+    NGINX/html 폴더에 dist 폴더 내용물 붙여넣기
+
+    cmd NSSM INSTALL '프론트엔드 서비스명' vmsFrontEndService
+
+    NSSM 팝업창 뜨면
+        Path에 nginx.exe 경로 지정
+
+    프론트엔드 서비스 시작
+    nssm start vmsFrontEndService
+
+    * 프론트엔드 서비스 시작이 안 되는 오류 발생
+        nginx -t 로 어떤 오류때문에 서비스 시작 안 되는지 알 수 있다.
+        unexpected "1" 39번째 줄
+        해결 완료 : conf 파일 pdf 파일 복사해서 그렇다. -> 노션에서 복사 기능 사용하여 편집하여 해결함.
+        https://vmssolutions.notion.site/Deploy-2f5d8710d8514291a8972fcdea6e049e
+
+
+
+백엔드 서비스
+    bin/release/.net6.0 폴더 내용물 오늘 날짜 폴더로 생성하기 (언제든지 롤백할 수 있도록) 
+    기존 폴더는 삭제하지 않고 두기
+
+    cmd NSSM INSTALL '백엔드 서비스명' vmsBackEndService
+
+    NSSM 팝업창 뜨면
+        Path에 services.exe 경로 지정
+    
+    백엔드 서비스 시작
+        nssm start vmsBackEndService
+
+* 서버 ip 주소로 연결하면 되긴하는데
+매번 이렇게 ip주소로 접속해야 하는 건지 궁금하다. 
+
+* 처음 세팅할 때 방법은 오케이, 근데 그러면 백엔드 파일 변경할 때는 매번 서비스 다시 생성해줘야 하는 건지 궁금하다. 
+
